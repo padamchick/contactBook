@@ -6,13 +6,11 @@
 </head>
 <body>
 <div align="center">
-    <h1>Contacts book</h1>
-    <button><a href="/welcome/new" style="text-decoration: none; color: black; font-weight: bold">Create New Contact</a></button>
-    <br/><br/>
+    <h1>Contact book</h1>
+    <br/>
     <table border="1" cellpadding="10">
         <thead>
         <tr>
-            <th>Contact number</th>
             <th>First name</th>
             <th>Last name</th>
             <th>Email</th>
@@ -23,9 +21,8 @@
         </tr>
         </thead>
 
-        <c:forEach items="${listPerson}" var="person">
+<%--        <c:forEach items="${listPerson}" var="person">--%>
             <tr>
-                <td><c:out value="${person.id}"/></td>
                 <td><c:out value="${person.firstName}"/></td>
                 <td><c:out value="${person.lastName}"/></td>
                 <td><c:out value="${person.email}"/></td>
@@ -33,18 +30,18 @@
                 <td><c:out value="${person.phoneNumber}"/></td>
                 <td><c:out value="${person.birthDate}"/></td>
                 <td>
-                    <button type="submit"><a href="/welcome/edit/ + ${person.id}" style="text-decoration: none; color:black">Edit</a>
+                    <button type="submit"><a href="/welcome/edit/${person.id}" style="text-decoration: none; color:black">Edit</a>
                     </button>
 
-                    <button type="submit"><a href="/welcome/delete/ + ${person.id}" style="text-decoration: none; color:black"
+                    <button type="submit"><a href="/welcome/delete/${person.id}" style="text-decoration: none; color:black"
                                              onclick="return confirm('Are you sure you want to delete this item?')">Delete</a>
                     </button>
                 </td>
             </tr>
-        </c:forEach>
+<%--        </c:forEach>--%>
     </table>
     <br/>
-    <button><a href="/" style="text-decoration: none; color: black; font-weight: bold">Log out</a></button>
+    <button><a href="/welcome" style="text-decoration: none; color: black; font-weight: bold">Return</a></button>
 </div>
 </body>
 </html>

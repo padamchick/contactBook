@@ -23,8 +23,13 @@ public class RegistrationValidator implements Validator {
     public void validate(Object o, Errors errors) {
         Credentials user = (Credentials) o;
 
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "email", "NotNull");
+
         if(service.findByEmail(user.getEmail()) != null) {
             errors.rejectValue("email", "Duplicate.credentials.email");
+        }
+        if(service.findByUsername(user.getUsername()) != null) {
+            errors.rejectValue("username", "Duplicate.credentials.username");
         }
         if (!user.getConfPassword().equals(user.getPassword())) {
             errors.rejectValue("confPassword", "Diff.credentials.confPassword");

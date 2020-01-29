@@ -1,0 +1,12 @@
+input {
+    width: 200px;
+    height: 30px;
+    vertical-align: top;
+}
+
+select {
+    width: 200px;
+    height: 30px;
+    border: 1px solid rgba(0, 0, 0, 0.35);
+    vertical-align: top;
+}

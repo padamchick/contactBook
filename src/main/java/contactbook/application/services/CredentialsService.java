@@ -10,5 +10,6 @@ public interface CredentialsService {
     Credentials get(Long id);
     void delete(Long id);
     Credentials findByEmail(String email);
+    Credentials findByUsername(String username);
     boolean isRegistered(String email);
 }

@@ -15,6 +15,10 @@ public class Credentials {
 
     @NotNull(message = "This field is required.")
     @Size(min=1, message = "This field is required.")
+    @Column(name="Username")
+    private String username;
+
+    @Size(min=1, message = "This field is required.")
     @Pattern(regexp = ".+@.+\\..+", message = "Incorrect mail format. Should be sth@sth.sth")
     @Column(name = "email")
     private String email;
@@ -26,17 +30,31 @@ public class Credentials {
     @Column(name = "password")
     private String password;
 
+    @Transient
     @NotNull(message = "This field is required.")
-    @Column(name = "conf_password")
     private String confPassword;
 
     public Credentials() {
     }
 
-    public Credentials(String email, String password) {
+    public Credentials(String email, String password, String username) {
         super();
         this.email=email;
         this.password=password;
+        this.username=username;
+    }
+    public Credentials(String username, String password) {
+        super();
+        this.password=password;
+        this.username=username;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getEmail() {

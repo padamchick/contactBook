@@ -4,7 +4,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>New contact</title>
+    <title>Registration page</title>
 
         <style>
             .error {color:red}
@@ -13,13 +13,23 @@
 </head>
 <body>
 <div align="center">
-    <h1>Add Contact</h1>
-    <br/>
+    <h1>Registration form</h1>
+
 
     <spring:url value="/registration/save" var="action"/>
 
     <form:form method="POST" modelAttribute="credentials" action="${action}">
         <table border="0" cellpadding="10">
+
+            <spring:bind path="username">
+                <tr>
+                    <td> Username</td>
+                    <td><form:input type="text" path="username" placeholder="Username"
+                                    autofocus="true"/></td>
+                    <td><form:errors path="username" cssClass="error"/></td>
+                </tr>
+            </spring:bind>
+
             <spring:bind path="email">
                 <tr>
                     <td> Email</td>
@@ -46,9 +56,10 @@
                     <td><form:errors path="confPassword" cssClass="error"/></td>
                 </tr>
             </spring:bind>
+
             <tr>
-                <td colspan="2">
-                    <button type="submit">Register</button>
+                <td colspan="2" align="center">
+                    <button type="submit" style="font-weight: bold; background-color: dodgerblue ;width: 305px; height: 40px">REGISTER</button>
                 </td>
             </tr>
         </table>

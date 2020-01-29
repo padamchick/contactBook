@@ -64,7 +64,7 @@ public class AppController {
     public String viewWelcomePage(Model model) {
         List<Person> listPerson = personService.listAll();
         model.addAttribute("listPerson", listPerson);
-        return "/welcome";
+        return "users";
     }
 
     @GetMapping("/welcome/new")
@@ -74,7 +74,7 @@ public class AppController {
     }
 
     @RequestMapping(value = "welcome/save", method = RequestMethod.POST)
-    public String savePerson(@ModelAttribute("person") Person person) {
+    public String savePerson(@Valid @ModelAttribute("person") Person person, BindingResult bindingResult) {
         personService.save(person);
         return "redirect:/welcome/";
     }
@@ -82,6 +82,14 @@ public class AppController {
     @RequestMapping("/welcome/edit/{id}")
     public ModelAndView showEditPersonForm(@PathVariable(name = "id") Long id) {
         ModelAndView mav = new ModelAndView("edit_person");
+        Person person = personService.get(id);
+        mav.addObject("person", person);
+        return mav;
+    }
+
+    @RequestMapping("/welcome/showcontact/{id}")
+    public ModelAndView showSelectedContact(@PathVariable(name = "id") Long id) {
+        ModelAndView mav = new ModelAndView("showContact");
         Person person = personService.get(id);
         mav.addObject("person", person);
         return mav;
