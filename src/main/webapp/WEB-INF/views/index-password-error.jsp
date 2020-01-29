@@ -22,16 +22,16 @@
             <spring:bind path="email">
                 <tr>
                     <td> Email</td>
-                    <td><form:input type="text" path="email" placeholder="Email"
-                                    autofocus="true"/></td>
+                    <td><form:input type="text" cssStyle="border-color: red" path="email" placeholder="Email" autofocus="true" /></td>
                 </tr>
 
             </spring:bind>
             <spring:bind path="password">
                 <tr>
                     <td> Password</td>
-                    <td><form:input type="password" path="password" placeholder="Password"
+                    <td><form:input type="password" cssStyle="border-color: red" path="password" placeholder="Password"
                                     autofocus="true"></form:input></td>
+                    <td><p style="color:red">Błędne hasło</p></td>
                 </tr>
             </spring:bind>
 

@@ -26,8 +26,4 @@ public class PersonServiceImpl implements PersonService {
         repo.deleteById(id);
     }
 
-    @Override
-    public Person findByEmail(String email) {
-        return repo.findByEmail(email);
-    }
 }

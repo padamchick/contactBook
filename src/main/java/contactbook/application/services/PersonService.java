@@ -9,5 +9,4 @@ public interface PersonService {
     List<Person> listAll();
     Person get(Long id);
     void delete(Long id);
-    Person findByEmail(String email);
 }

@@ -15,14 +15,14 @@
     <h1>Edit Contact</h1>
     <br/>
 
-    <spring:url value="/" var="userActionUrl"/>
+    <spring:url value="/welcome/save" var="userActionUrl"/>
 
     <form:form method="POST" modelAttribute="person" action="${userActionUrl}">
         <table border="0" cellpadding="10">
             <spring:bind path="id">
                 <tr>
                     <td>Contact ID</td>
-                    <td><form:input type="text" path="id"  readonly="true" disabled="true"/></td>
+                    <td><form:input type="text" path="id"  readonly="true"/></td>
                 </tr>
             </spring:bind>
 
