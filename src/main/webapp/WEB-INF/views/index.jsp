@@ -6,9 +6,9 @@
 <head>
     <title>Log in with your account</title>
 
-    <%--    <style>--%>
-    <%--        .error {color:red}--%>
-    <%--    </style>--%>
+        <style>
+            .error {color:red}
+        </style>
 </head>
 <body>
 <div align="center">
@@ -24,6 +24,7 @@
                     <td> Email</td>
                     <td><form:input type="text" path="email" placeholder="Email"
                                     autofocus="true"/></td>
+                    <td><form:errors path="email" cssClass="error"/></td>
                 </tr>
 
             </spring:bind>
@@ -32,6 +33,7 @@
                     <td> Password</td>
                     <td><form:input type="password" path="password" placeholder="Password"
                                     autofocus="true"></form:input></td>
+                    <td><form:errors path="password" cssClass="error"/></td>
                 </tr>
             </spring:bind>
 

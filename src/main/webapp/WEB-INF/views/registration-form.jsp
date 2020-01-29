@@ -9,6 +9,7 @@
         <style>
             .error {color:red}
         </style>
+
 </head>
 <body>
 <div align="center">
@@ -34,6 +35,15 @@
                     <td><form:input type="password" path="password" placeholder="Password"
                                     autofocus="true"></form:input></td>
                     <td><form:errors path="password" cssClass="error"/></td>
+                </tr>
+            </spring:bind>
+
+            <spring:bind path="confPassword">
+                <tr>
+                    <td> Confirm password</td>
+                    <td><form:input type="password" path="confPassword" placeholder="Password confirmation"
+                                    autofocus="true"></form:input></td>
+                    <td><form:errors path="confPassword" cssClass="error"/></td>
                 </tr>
             </spring:bind>
             <tr>

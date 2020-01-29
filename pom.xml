@@ -5,6 +5,7 @@
 	<groupId>contactbook</groupId>
 	<artifactId>application</artifactId>
 	<version>1.0-SNAPSHOT</version>
+	<packaging>war</packaging>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>

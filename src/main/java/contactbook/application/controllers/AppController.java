@@ -4,6 +4,8 @@ import contactbook.application.model.Credentials;
 import contactbook.application.model.Person;
 import contactbook.application.services.CredentialsServiceImpl;
 import contactbook.application.services.PersonServiceImpl;
+import contactbook.application.validation.LoginValidator;
+import contactbook.application.validation.RegistrationValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,6 +22,10 @@ public class AppController {
     private PersonServiceImpl personService;
     @Autowired
     private CredentialsServiceImpl credentialsService;
+    @Autowired
+    private RegistrationValidator registrationValidator;
+    @Autowired
+    private LoginValidator loginValidator;
 
     @GetMapping("/")
     public String login(Model model) {
@@ -28,13 +34,12 @@ public class AppController {
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public String login(@ModelAttribute("credentials") Credentials credentials) {
-        Credentials user = credentialsService.findByEmail(credentials.getEmail());
-        if (user == null) {
-            return "index-error";
-        } else if (!user.getPassword().equals(credentials.getPassword())) {
-            return "index-password-error";
+    public String login(@ModelAttribute("credentials") Credentials credentials, BindingResult bindingResult) {
+        loginValidator.validate(credentials, bindingResult);
+        if(bindingResult.hasErrors()) {
+            return "index";
         }
+
         return "redirect:/welcome";
     }
 
@@ -46,12 +51,11 @@ public class AppController {
 
     @RequestMapping(value = "/registration/save", method = RequestMethod.POST)
     public String saveCredentials(@Valid @ModelAttribute("credentials") Credentials credentials, BindingResult bindingResult) {
+        registrationValidator.validate(credentials, bindingResult);
+
         if(bindingResult.hasErrors()) {
             return "registration-form";
         }
-        System.out.println(credentialsService.isRegistered(credentials.getEmail()));
-        if (credentialsService.isRegistered(credentials.getEmail()))
-            return "registration-form-error";
         credentialsService.save(credentials);
         return "redirect:/";
     }

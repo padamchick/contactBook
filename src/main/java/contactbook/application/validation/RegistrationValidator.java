@@ -5,11 +5,11 @@ import contactbook.application.services.CredentialsServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
+import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
 
-
 @Component
-public class EmailValidator implements Validator {
+public class RegistrationValidator implements Validator {
 
     @Autowired
     private CredentialsServiceImpl service;
@@ -22,6 +22,13 @@ public class EmailValidator implements Validator {
     @Override
     public void validate(Object o, Errors errors) {
         Credentials user = (Credentials) o;
+
+        if(service.findByEmail(user.getEmail()) != null) {
+            errors.rejectValue("email", "Duplicate.credentials.email");
+        }
+        if (!user.getConfPassword().equals(user.getPassword())) {
+            errors.rejectValue("confPassword", "Diff.credentials.confPassword");
+        }
 
     }
 }

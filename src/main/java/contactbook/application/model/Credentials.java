@@ -13,18 +13,22 @@ public class Credentials {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotNull(message = "required")
-    @Size(min=1, message = "required")
-    @Pattern(regexp = ".+@.+\\..+", message = "incorrect email format")
+    @NotNull(message = "This field is required.")
+    @Size(min=1, message = "This field is required.")
+    @Pattern(regexp = ".+@.+\\..+", message = "Incorrect mail format. Should be sth@sth.sth")
     @Column(name = "email")
     private String email;
 
-    @NotNull(message = "required")
-    @Size(min=6, message = "min 6 signs required")
-    @Pattern(regexp = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=\\S+$).{6,}$", message = "password requires" +
-            " a lower and an upper case letter and digit ")
+    @NotNull(message = "This field is required.")
+    @Size(min=6, message = "Please use more than 6 characters.")
+    @Pattern(regexp = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=\\S+$).{6,}$", message = "Password requires" +
+            " a lower and an upper case letter and a digit.")
     @Column(name = "password")
     private String password;
+
+    @NotNull(message = "This field is required.")
+    @Column(name = "conf_password")
+    private String confPassword;
 
     public Credentials() {
     }
@@ -57,5 +61,13 @@ public class Credentials {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getConfPassword() {
+        return confPassword;
+    }
+
+    public void setConfPassword(String confPassword) {
+        this.confPassword = confPassword;
     }
 }
