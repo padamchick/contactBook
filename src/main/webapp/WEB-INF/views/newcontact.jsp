@@ -17,7 +17,7 @@
     <h1>Add Contact</h1>
     <br/>
 
-    <spring:url value="/welcome/save" var="userActionUrl"/>
+    <spring:url value="/users/save" var="userActionUrl"/>
 
     <form:form method="POST" modelAttribute="person" action="${userActionUrl}">
         <table border="0" cellpadding="10">

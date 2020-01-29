@@ -15,16 +15,15 @@
 <body>
 <div align="center">
     <h1>Edit Contact</h1>
-    <br/>
 
-    <spring:url value="/welcome/save" var="userActionUrl"/>
+    <spring:url value="/users/save" var="userActionUrl"/>
 
     <form:form method="POST" modelAttribute="person" action="${userActionUrl}">
         <table border="0" cellpadding="10">
             <spring:bind path="id">
                 <tr>
-                    <td>Contact ID</td>
-                    <td><form:input type="text" path="id"  readonly="true"/></td>
+<%--                    <td>Contact ID</td>--%>
+                    <td><form:input type="hidden" path="id" readonly="true"/></td>
                 </tr>
             </spring:bind>
 
@@ -65,23 +64,30 @@
             <spring:bind path="phoneNumber">
                 <tr>
                     <td> Phone number</td>
-                    <td><form:input type="text" path="phoneNumber" placeholder="Phone number" autofocus="true"></form:input></td>
+                    <td><form:input type="text" path="phoneNumber" placeholder="Phone number"
+                                    autofocus="true"></form:input></td>
                 </tr>
             </spring:bind>
             <spring:bind path="birthDate">
                 <tr>
                     <td> Birth date</td>
-                    <td><form:input type="text" path="birthDate" placeholder="01.01.2000" autofocus="true"></form:input></td>
+                    <td><form:input type="text" path="birthDate" placeholder="01.01.2000"
+                                    autofocus="true"></form:input></td>
                 </tr>
             </spring:bind>
             <tr>
-                <td colspan="2">
-                    <button type="submit">Save</button>
+
+                <td colspan="2" align="center">
+                    <button type="submit"
+                            style="font-weight: bold;background-color: dodgerblue ;width: 315px; height: 40px">SAVE
+                    </button>
                 </td>
+
+
             </tr>
+
         </table>
     </form:form>
-
 </div>
 </body>
 </html>

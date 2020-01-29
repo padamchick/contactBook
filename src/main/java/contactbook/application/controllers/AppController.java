@@ -28,19 +28,25 @@ public class AppController {
     private LoginValidator loginValidator;
 
     @GetMapping("/")
-    public String login(Model model) {
-        model.addAttribute("credentials", new Credentials());
-        return "index";
+    public String showStartPage(Model model) {
+        List<Person> listPerson = personService.listAll();
+        model.addAttribute("listPerson", listPerson);
+        return "usersBasic";
     }
 
-    @RequestMapping(value = "/login", method = RequestMethod.POST)
+    @GetMapping("/login")
+    public String login(Model model) {
+        model.addAttribute("credentials", new Credentials());
+        return "loginPage";
+    }
+
+    @RequestMapping(value = "/logintopage", method = RequestMethod.POST)
     public String login(@ModelAttribute("credentials") Credentials credentials, BindingResult bindingResult) {
         loginValidator.validate(credentials, bindingResult);
         if(bindingResult.hasErrors()) {
-            return "index";
+            return "loginPage";
         }
-
-        return "redirect:/welcome";
+        return "redirect:/users";
     }
 
     @GetMapping("/registration")
@@ -57,29 +63,29 @@ public class AppController {
             return "registration-form";
         }
         credentialsService.save(credentials);
-        return "redirect:/";
+        return "loginPage";
     }
 
-    @GetMapping("/welcome")
+    @GetMapping("/users")
     public String viewWelcomePage(Model model) {
         List<Person> listPerson = personService.listAll();
         model.addAttribute("listPerson", listPerson);
-        return "users";
+        return "usersPage";
     }
 
-    @GetMapping("/welcome/new")
+    @GetMapping("/users/new")
     public String showNewContactForm(Model model) {
         model.addAttribute("person", new Person());
         return "newcontact";
     }
 
-    @RequestMapping(value = "welcome/save", method = RequestMethod.POST)
+    @RequestMapping(value = "users/save", method = RequestMethod.POST)
     public String savePerson(@Valid @ModelAttribute("person") Person person, BindingResult bindingResult) {
         personService.save(person);
-        return "redirect:/welcome/";
+        return "redirect:/users/";
     }
 
-    @RequestMapping("/welcome/edit/{id}")
+    @RequestMapping("/users/edit/{id}")
     public ModelAndView showEditPersonForm(@PathVariable(name = "id") Long id) {
         ModelAndView mav = new ModelAndView("edit_person");
         Person person = personService.get(id);
@@ -87,7 +93,7 @@ public class AppController {
         return mav;
     }
 
-    @RequestMapping("/welcome/showcontact/{id}")
+    @RequestMapping("/users/showcontact/{id}")
     public ModelAndView showSelectedContact(@PathVariable(name = "id") Long id) {
         ModelAndView mav = new ModelAndView("showContact");
         Person person = personService.get(id);
@@ -95,10 +101,18 @@ public class AppController {
         return mav;
     }
 
-    @RequestMapping("/welcome/delete/{id}")
+    @RequestMapping("/users/showcontactbasic/{id}")
+    public ModelAndView showSelectedContactWithoutActions(@PathVariable(name = "id") Long id) {
+        ModelAndView mav = new ModelAndView("showContactBasic");
+        Person person = personService.get(id);
+        mav.addObject("person", person);
+        return mav;
+    }
+
+    @RequestMapping("/users/delete/{id}")
     public String deletePerson(@PathVariable(name = "id") Long id) {
         personService.delete(id);
-        return "redirect:/welcome/";
+        return "redirect:/users/";
     }
 
 

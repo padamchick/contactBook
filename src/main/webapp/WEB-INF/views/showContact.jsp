@@ -30,10 +30,10 @@
                 <td><c:out value="${person.phoneNumber}"/></td>
                 <td><c:out value="${person.birthDate}"/></td>
                 <td>
-                    <button type="submit"><a href="/welcome/edit/${person.id}" style="text-decoration: none; color:black">Edit</a>
+                    <button type="submit"><a href="/users/edit/${person.id}" style="text-decoration: none; color:black">Edit</a>
                     </button>
 
-                    <button type="submit"><a href="/welcome/delete/${person.id}" style="text-decoration: none; color:black"
+                    <button type="submit"><a href="/users/delete/${person.id}" style="text-decoration: none; color:black"
                                              onclick="return confirm('Are you sure you want to delete this item?')">Delete</a>
                     </button>
                 </td>
@@ -41,7 +41,7 @@
 <%--        </c:forEach>--%>
     </table>
     <br/>
-    <button><a href="/welcome" style="text-decoration: none; color: black; font-weight: bold">Return</a></button>
+    <button><a href="/users" style="text-decoration: none; color: black; font-weight: bold">Return</a></button>
 </div>
 </body>
 </html>

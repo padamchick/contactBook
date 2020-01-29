@@ -17,7 +17,8 @@ public class CredentialsServiceImpl implements CredentialsService {
 //    @Autowired
 //    private BCryptPasswordEncoder bCryptPasswordEncoder;
 
-    public List<Credentials> listAll() { return repo.findAll(); }
+    public List<Credentials> listAll() {
+        return repo.findAll(); }
 
     public void save(Credentials credentials) {
         //credentials.setPassword(bCryptPasswordEncoder.encode(credentials.getPassword()));

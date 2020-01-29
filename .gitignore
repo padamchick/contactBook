@@ -23,7 +23,6 @@ mvnw.cmd
 .mvn
 target
 HELP.md
-tutorial.iml
 
 ### NetBeans ###
 /nbproject/private/

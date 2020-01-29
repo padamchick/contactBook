@@ -15,7 +15,7 @@
     <h1>Log in</h1>
 
 
-    <spring:url value="/login" var="userActionUrl"/>
+    <spring:url value="/logintopage" var="userActionUrl"/>
 
     <form:form method="POST" modelAttribute="credentials" action="${userActionUrl}">
         <table border="0" cellpadding="10">
