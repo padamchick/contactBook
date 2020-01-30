@@ -16,7 +16,7 @@
 
 
     <spring:url value="/logintopage" var="userActionUrl"/>
-
+    <span style="color: green">${message}</span>
     <form:form method="POST" modelAttribute="credentials" action="${userActionUrl}">
         <table border="0" cellpadding="10">
             <spring:bind path="username">
@@ -24,7 +24,7 @@
                     <td> Username</td>
                     <td><form:input type="text" path="username" placeholder="Username"
                                     autofocus="true"/></td>
-                    <td><form:errors path="username" cssClass="error"/></td>
+                    <td><span style="color: red">${error}</span></td>
                 </tr>
             </spring:bind>
             
@@ -33,7 +33,7 @@
                     <td> Password</td>
                     <td><form:input type="password" path="password" placeholder="Password"
                                     autofocus="true"></form:input></td>
-                    <td><form:errors path="password" cssClass="error"/></td>
+
                 </tr>
             </spring:bind>
             <tr>
@@ -42,6 +42,8 @@
                     <button type="submit" style="font-weight: bold;background-color: dodgerblue ;width: 250px; height: 40px">LOG IN</button>
                 </td>
             </tr>
+
+
             <tr>
                 <td colspan="2" align="center">
                    <a href="/registration" align="center" style="color: dodgerblue; font-weight: bold;  text-decoration: none">Create an account</a>

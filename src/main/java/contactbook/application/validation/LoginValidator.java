@@ -34,8 +34,9 @@ public class LoginValidator implements Validator {
         if (service.findByUsername(user.getUsername()) == null) {
             errors.rejectValue("username", "Missing.credentials.username");
 
-        } else if (!service.findByUsername(user.getUsername()).getPassword().equals(user.getPassword())) {
-            errors.rejectValue("password", "Mismatch.credentials.password");
         }
+//        else if (!service.findByUsername(user.getUsername()).getPassword().equals(user.getPassword())) {
+//            errors.rejectValue("password", "Mismatch.credentials.password");
+//        }
     }
 }

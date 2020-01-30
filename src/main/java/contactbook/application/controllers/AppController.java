@@ -35,13 +35,18 @@ public class AppController {
     }
 
     @GetMapping("/login")
-    public String login(Model model) {
+    public String login(Model model, String error, String logout) {
+        if (error != null)
+            model.addAttribute("error", "Your username and password is invalid.");
+
+        if (logout != null)
+            model.addAttribute("message", "You have been logged out successfully.");
         model.addAttribute("credentials", new Credentials());
         return "loginPage";
     }
 
     @RequestMapping(value = "/logintopage", method = RequestMethod.POST)
-    public String login(@ModelAttribute("credentials") Credentials credentials, BindingResult bindingResult) {
+    public String login(@Valid @ModelAttribute("credentials") Credentials credentials, BindingResult bindingResult) {
         loginValidator.validate(credentials, bindingResult);
         if(bindingResult.hasErrors()) {
             return "loginPage";
