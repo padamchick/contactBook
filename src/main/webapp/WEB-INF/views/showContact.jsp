@@ -17,28 +17,34 @@
             <th>Category</th>
             <th>Phone number</th>
             <th>Birth day</th>
-            <th>Actions</th>
+            <c:if test="${pageContext.request.userPrincipal.name != null}">
+                <th>Actions</th>
+            </c:if>
         </tr>
         </thead>
 
-<%--        <c:forEach items="${listPerson}" var="person">--%>
-            <tr>
-                <td><c:out value="${person.firstName}"/></td>
-                <td><c:out value="${person.lastName}"/></td>
-                <td><c:out value="${person.email}"/></td>
-                <td><c:out value="${person.category}"/></td>
-                <td><c:out value="${person.phoneNumber}"/></td>
-                <td><c:out value="${person.birthDate}"/></td>
+        <%--        <c:forEach items="${listPerson}" var="person">--%>
+        <tr>
+            <td><c:out value="${person.firstName}"/></td>
+            <td><c:out value="${person.lastName}"/></td>
+            <td><c:out value="${person.email}"/></td>
+            <td><c:out value="${person.category}"/></td>
+            <td><c:out value="${person.phoneNumber}"/></td>
+            <td><c:out value="${person.birthDate}"/></td>
+            <c:if test="${pageContext.request.userPrincipal.name != null}">
                 <td>
-                    <button type="submit"><a href="/users/edit/${person.id}" style="text-decoration: none; color:black">Edit</a>
+                    <button type="submit"><a href="/users/edit/${person.id}"
+                                             style="text-decoration: none; color:black">Edit</a>
                     </button>
 
-                    <button type="submit"><a href="/users/delete/${person.id}" style="text-decoration: none; color:black"
+                    <button type="submit"><a href="/users/delete/${person.id}"
+                                             style="text-decoration: none; color:black"
                                              onclick="return confirm('Are you sure you want to delete this item?')">Delete</a>
                     </button>
                 </td>
-            </tr>
-<%--        </c:forEach>--%>
+            </c:if>
+        </tr>
+        <%--        </c:forEach>--%>
     </table>
     <br/>
     <button><a href="/users" style="text-decoration: none; color: black; font-weight: bold">Return</a></button>

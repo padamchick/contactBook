@@ -62,6 +62,11 @@
                     <button type="submit" style="font-weight: bold; background-color: dodgerblue ;width: 305px; height: 40px">REGISTER</button>
                 </td>
             </tr>
+            <tr>
+                <td colspan="2" align="center">
+                    <a href="/login" style="font-weight: bold; color: brown; text-decoration: none">Return</a>
+                </td>
+            </tr>
         </table>
     </form:form>
 

@@ -31,7 +31,7 @@ public class AppController {
     public String showStartPage(Model model) {
         List<Person> listPerson = personService.listAll();
         model.addAttribute("listPerson", listPerson);
-        return "usersBasic";
+        return "usersPage";
     }
 
     @GetMapping("/login")

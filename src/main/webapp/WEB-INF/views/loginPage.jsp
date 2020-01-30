@@ -37,6 +37,7 @@
                 </tr>
             </spring:bind>
             <tr>
+<%--                <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>--%>
                 <td colspan="2">
                     <button type="submit" style="font-weight: bold;background-color: dodgerblue ;width: 250px; height: 40px">LOG IN</button>
                 </td>
