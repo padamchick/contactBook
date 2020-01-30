@@ -4,6 +4,7 @@ import contactbook.application.model.Credentials;
 import contactbook.application.repositories.CredentialsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -14,14 +15,14 @@ public class CredentialsServiceImpl implements CredentialsService {
     @Autowired
     private CredentialsRepository repo;
 
-//    @Autowired
-//    private BCryptPasswordEncoder bCryptPasswordEncoder;
+    @Autowired
+    private PasswordEncoder bCryptPasswordEncoder;
 
     public List<Credentials> listAll() {
         return repo.findAll(); }
 
     public void save(Credentials credentials) {
-        //credentials.setPassword(bCryptPasswordEncoder.encode(credentials.getPassword()));
+        credentials.setPassword(bCryptPasswordEncoder.encode(credentials.getPassword()));
         repo.save(credentials);
     }
 

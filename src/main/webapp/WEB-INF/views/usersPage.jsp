@@ -34,7 +34,7 @@
         </c:forEach>
     </table>
     <br/>
-    <button><a href="/" style="text-decoration: none; color: black; font-weight: bold">Log out</a>
+    <button><a href="/logout" style="text-decoration: none; color: black; font-weight: bold">Log out</a>
     </button>
 </div>
 </body>

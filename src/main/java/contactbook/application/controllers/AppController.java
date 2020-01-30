@@ -35,7 +35,12 @@ public class AppController {
     }
 
     @GetMapping("/login")
-    public String login(Model model) {
+    public String login(Model model, String error, String logout) {
+        if (error != null)
+            model.addAttribute("error", "Your username and password is invalid.");
+
+        if (logout != null)
+            model.addAttribute("message", "You have been logged out successfully.");
         model.addAttribute("credentials", new Credentials());
         return "loginPage";
     }
@@ -47,6 +52,11 @@ public class AppController {
             return "loginPage";
         }
         return "redirect:/users";
+    }
+
+    @RequestMapping(value = "/logout")
+    public String logout() {
+        return "redirect:/login";
     }
 
     @GetMapping("/registration")
@@ -63,7 +73,7 @@ public class AppController {
             return "registration-form";
         }
         credentialsService.save(credentials);
-        return "loginPage";
+        return "redirect:/login";
     }
 
     @GetMapping("/users")
@@ -84,6 +94,8 @@ public class AppController {
         personService.save(person);
         return "redirect:/users/";
     }
+
+
 
     @RequestMapping("/users/edit/{id}")
     public ModelAndView showEditPersonForm(@PathVariable(name = "id") Long id) {
@@ -114,6 +126,8 @@ public class AppController {
         personService.delete(id);
         return "redirect:/users/";
     }
+
+
 
 
 }

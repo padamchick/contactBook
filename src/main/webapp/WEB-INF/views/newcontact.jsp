@@ -15,7 +15,6 @@
 <body>
 <div align="center">
     <h1>Add Contact</h1>
-    <br/>
 
     <spring:url value="/users/save" var="userActionUrl"/>
 
@@ -49,6 +48,7 @@
                     </form:select></td>
                 </tr>
             </spring:bind>
+
             <spring:bind path="phoneNumber">
                 <tr>
                     <td> Phone Number</td>
