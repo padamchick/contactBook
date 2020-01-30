@@ -32,7 +32,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .httpBasic().disable()
                 .authorizeRequests()
                     .antMatchers("/", "/users/showcontactbasic/{id}", "/registration", "/registration/save").permitAll()
-//                .antMatchers("/login*").permitAll()
+                .antMatchers("/login*").permitAll()
                     .anyRequest().authenticated()
                     .and()
                 .formLogin()
@@ -40,9 +40,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .loginProcessingUrl("/logintopage")
                 .defaultSuccessUrl("/users", false)
                 .and()
-                .logout();
-//                .logoutUrl("/perform_logout")
-//                .deleteCookies("JSESSIONID");
+                .logout()
+                .logoutUrl("/logout")
+                .deleteCookies("JSESSIONID");
     }
 
         @Override

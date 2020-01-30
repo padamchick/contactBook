@@ -21,7 +21,6 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
     @Override
     @Transactional
-
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         Credentials user = repository.findByUsername(username);
         if (user == null) throw new UsernameNotFoundException(username);
