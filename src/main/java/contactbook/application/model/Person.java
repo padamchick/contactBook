@@ -2,6 +2,7 @@ package contactbook.application.model;
 
 import javax.persistence.*;
 import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
@@ -13,20 +14,30 @@ public class Person {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotNull(message = "This field is required.")
+    @Size(min=1, message = "This field is required.")
     @Column(name="first_name")
     private String firstName;
 
+    @NotNull(message = "This field is required.")
+    @Size(min=1, message = "This field is required.")
     @Column(name="last_name")
     private String lastName;
 
+    @NotNull(message = "This field is required.")
+    @Size(min=1, message = "This field is required.")
     private String email;
 
     private String category;
 
+    @NotNull(message = "This field is required.")
+    @Size(min=1, message = "This field is required.")
     @Column(name="birth_date")
     @Pattern(regexp = "[0-9]{2}\\.[0-9]{2}\\.[0-9]{4}", message = "Invalid date format.")
     private String birthDate;
 
+    @NotNull(message = "This field is required.")
+    @Size(min=1, message = "This field is required.")
     @Column(name="phone_number")
     @Size(min=9, message = "The number requires 9 digits.")
     private String phoneNumber;

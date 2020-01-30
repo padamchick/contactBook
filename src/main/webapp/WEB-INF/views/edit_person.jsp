@@ -8,9 +8,9 @@
           href="${pageContext.request.contextPath}/resources/css/styles.css">
     <title>Edit contact</title>
 
-    <%--    <style>--%>
-    <%--        .error {color:red}--%>
-    <%--    </style>--%>
+        <style>
+            .error {color:red}
+        </style>
 </head>
 <body>
 <div align="center">
@@ -82,8 +82,11 @@
                             style="font-weight: bold;background-color: dodgerblue ;width: 315px; height: 40px">SAVE
                     </button>
                 </td>
-
-
+            </tr>
+            <tr>
+                <td colspan="2" align="center">
+                    <a href="/users/showcontact/${person.id}" style="font-weight: bold; color: brown; text-decoration: none">Return</a>
+                </td>
             </tr>
 
         </table>

@@ -86,11 +86,17 @@ public class AppController {
 
     @RequestMapping(value = "users/save", method = RequestMethod.POST)
     public String savePerson(@Valid @ModelAttribute("person") Person person, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            if(person.getId()==null) {
+                return "newcontact";
+            } else {
+                return "redirect:/users/edit/"+person.getId();
+            }
+
+        }
         personService.save(person);
         return "redirect:/users/";
     }
-
-
 
     @RequestMapping("/users/edit/{id}")
     public ModelAndView showEditPersonForm(@PathVariable(name = "id") Long id) {
@@ -103,14 +109,6 @@ public class AppController {
     @RequestMapping("/users/showcontact/{id}")
     public ModelAndView showSelectedContact(@PathVariable(name = "id") Long id) {
         ModelAndView mav = new ModelAndView("showContact");
-        Person person = personService.get(id);
-        mav.addObject("person", person);
-        return mav;
-    }
-
-    @RequestMapping("/users/showcontactbasic/{id}")
-    public ModelAndView showSelectedContactWithoutActions(@PathVariable(name = "id") Long id) {
-        ModelAndView mav = new ModelAndView("showContactBasic");
         Person person = personService.get(id);
         mav.addObject("person", person);
         return mav;

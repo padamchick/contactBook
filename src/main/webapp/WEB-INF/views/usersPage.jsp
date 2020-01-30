@@ -6,7 +6,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Contact Book</title>
+    <title>Welcome ${pageContext.request.userPrincipal.name}</title>
 </head>
 <body>
 <div align="center">
