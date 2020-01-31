@@ -25,13 +25,13 @@ public class RegistrationValidator implements Validator {
 
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "email", "NotNull");
 
-        if(service.findByEmail(user.getEmail()) != null) {
+        if(service.findByEmail(user.getEmail()) != null) {          //sprawdz, czy uzytkownik o takim mailu juz istnieje
             errors.rejectValue("email", "Duplicate.credentials.email");
         }
-        if(service.findByUsername(user.getUsername()) != null) {
+        if(service.findByUsername(user.getUsername()) != null) {    //sprawdz, czy uzytkownik o takim loginie juz istnieje
             errors.rejectValue("username", "Duplicate.credentials.username");
         }
-        if (!user.getConfPassword().equals(user.getPassword())) {
+        if (!user.getConfPassword().equals(user.getPassword())) {      //sprawdz, czy uzytkownik prawidlowo potworzyl haslo
             errors.rejectValue("confPassword", "Diff.credentials.confPassword");
         }
 

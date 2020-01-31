@@ -26,6 +26,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private UserDetailsService userDetailsService;
 
+    //zasady dostepu do poszczegolnych katalogow
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
@@ -59,7 +60,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     public AuthenticationManager customAuthenticationManager() throws Exception {
         return authenticationManager();
     }
-
 
     @Bean
     public DaoAuthenticationProvider authProvider() {

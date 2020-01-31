@@ -22,7 +22,7 @@ public class CredentialsServiceImpl implements CredentialsService {
         return repo.findAll(); }
 
     public void save(Credentials credentials) {
-        credentials.setPassword(bCryptPasswordEncoder.encode(credentials.getPassword()));
+        credentials.setPassword(bCryptPasswordEncoder.encode(credentials.getPassword()));   //szyfrowanie hasla
         repo.save(credentials);
     }
 
@@ -35,7 +35,7 @@ public class CredentialsServiceImpl implements CredentialsService {
     }
 
     @Override
-    public Credentials findByEmail(String email) {
+    public Credentials findByEmail(String email) {      //znajdz uzytkownika po mailu
         List<Credentials> tempList = listAll();
         for(Credentials match:tempList) {
             if(match.getEmail().equals(email))
@@ -54,15 +54,6 @@ public class CredentialsServiceImpl implements CredentialsService {
         return null;
     }
 
-    @Override
-    public boolean isRegistered(String email) {
-        List<Credentials> tempList = listAll();
-        for(Credentials match:tempList) {
-            if(match.getEmail().equals(email))
-                return true;
-        }
-        return false;
-    }
 
 
 

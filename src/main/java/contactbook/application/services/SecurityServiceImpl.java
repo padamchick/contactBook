@@ -29,6 +29,9 @@ public class SecurityServiceImpl implements SecurityService {
         return null;
     }
 
+    /*
+    to metoda odpowiadajaca za autologowanie po rejestracji, cos nie dzialalo, dokoncze ja niedlugo
+     */
     @Override
     public void autoLogin(String username, String password) {
         UserDetails userDetails = userDetailsService.loadUserByUsername(username);

@@ -10,6 +10,8 @@ import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
 
+//poki co nieuzywana
+
 @Component
 public class LoginValidator implements Validator {
 
@@ -29,7 +31,6 @@ public class LoginValidator implements Validator {
         Credentials user = (Credentials) o;
 
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "username", "NotNull");
-
 
         if (service.findByUsername(user.getUsername()) == null) {
             errors.rejectValue("username", "Missing.credentials.username");

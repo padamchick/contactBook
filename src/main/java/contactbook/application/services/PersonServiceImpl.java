@@ -15,7 +15,7 @@ public class PersonServiceImpl implements PersonService {
     @Autowired
     private PersonRepository repo;
 
-    public List<Person> listAll() {
+    public List<Person> listAll() {     //wyswietl w kolejnosci alfabetycznej
         List<Person> list = repo.findAll();
         Collections.sort(list, (p1, p2) -> p1.getLastName().compareTo(p2.getLastName()));
         return list;

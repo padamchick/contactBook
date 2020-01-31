@@ -16,6 +16,10 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.validation.Valid;
 import java.util.List;
 
+/*
+Obsluga zadan przychodzacych od klienta
+ */
+
 @Controller
 public class AppController {
     @Autowired
@@ -37,7 +41,7 @@ public class AppController {
     @GetMapping("/login")
     public String login(Model model, String error, String logout) {
         if (error != null)
-            model.addAttribute("error", "Your username and password is invalid.");
+            model.addAttribute("error", "Your username and password is invalid.");      //informacje o errorach i logoutach wyswietlane w pliku login.jsp
 
         if (logout != null)
             model.addAttribute("message", "You have been logged out successfully.");
@@ -47,14 +51,14 @@ public class AppController {
 
     @RequestMapping(value = "/logintopage", method = RequestMethod.POST)
     public String login(@Valid @ModelAttribute("credentials") Credentials credentials, BindingResult bindingResult) {
-        loginValidator.validate(credentials, bindingResult);
+        loginValidator.validate(credentials, bindingResult);    //sprawdz, czy
         if(bindingResult.hasErrors()) {
             return "loginPage";
         }
         return "redirect:/users";
     }
 
-    @RequestMapping(value = "/logout")
+    @RequestMapping(value = "/logout")          //wyloguj
     public String logout() {
         return "redirect:/login";
     }
@@ -67,40 +71,33 @@ public class AppController {
 
     @RequestMapping(value = "/registration/save", method = RequestMethod.POST)
     public String saveCredentials(@Valid @ModelAttribute("credentials") Credentials credentials, BindingResult bindingResult) {
-        registrationValidator.validate(credentials, bindingResult);
+        registrationValidator.validate(credentials, bindingResult); //sprawdz dodatkowe warunki (duplikacja loginow/maili, bledne potwierdzenie hasla)
 
         if(bindingResult.hasErrors()) {
-            return "registration-form";
+            return "registration-form";         //powrot do formularza rejestracyjnego, wyswietlenie informacji o nieprawidlowosciach
         }
-        credentialsService.save(credentials);
+        credentialsService.save(credentials);   //jesli wszystko ok, zapisz do bazy
         return "redirect:/login";
     }
 
-    @GetMapping("/users")
-    public String viewWelcomePage(Model model) {
-        List<Person> listPerson = personService.listAll();
-        model.addAttribute("listPerson", listPerson);
-        return "usersPage";
-    }
-
-    @GetMapping("/users/new")
+    @GetMapping("/users/new")                           //otworz strone z formularzem nowego kontaktu
     public String showNewContactForm(Model model) {
         model.addAttribute("person", new Person());
         return "newcontact";
     }
 
-    @RequestMapping(value = "users/save", method = RequestMethod.POST)
+    @RequestMapping(value = "users/save", method = RequestMethod.POST)  //zapisz nowy/edytowany kontakt
     public String savePerson(@Valid @ModelAttribute("person") Person person, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
-            if(person.getId()==null) {
+            if(person.getId()==null) {      //jesli blad z formularza dla nowego kontaktu
                 return "newcontact";
-            } else {
+            } else {                        //jesli blad z formularza dla edytowanego kontaktu
                 return "redirect:/users/edit/"+person.getId();
             }
 
         }
         personService.save(person);
-        return "redirect:/users/";
+        return "redirect:/users/";          //zapisz i powrot do strony glownej
     }
 
     @RequestMapping("/users/edit/{id}")
