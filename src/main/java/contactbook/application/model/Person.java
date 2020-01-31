@@ -37,9 +37,9 @@ public class Person {
     private String birthDate;
 
     @NotNull(message = "This field is required.")
-    @Size(min=1, message = "This field is required.")
+    @Size(max=12, message = "The number requires max 12 digits.")
     @Column(name="phone_number")
-    @Size(min=9, message = "The number requires 9 digits.")
+    @Size(min=9, message = "The number requires min 9 digits.")
     private String phoneNumber;
 
     public Person() {
