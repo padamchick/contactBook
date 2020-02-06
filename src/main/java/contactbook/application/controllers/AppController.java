@@ -31,7 +31,7 @@ public class AppController {
     @Autowired
     private LoginValidator loginValidator;
 
-    @GetMapping("/")
+    @GetMapping(value={"/","/users"})
     public String showStartPage(Model model) {
         List<Person> listPerson = personService.listAll();
         model.addAttribute("listPerson", listPerson);
