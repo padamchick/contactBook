@@ -1,19 +1,21 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
-<c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 
 <head>
     <meta charset="UTF-8">
     <title>Welcome ${pageContext.request.userPrincipal.name}</title>
+    <link type="text/css"
+          rel="stylesheet"
+          href="${pageContext.request.contextPath}/resources/css/styles.css">
 </head>
 <body>
-<div align="center">
+<div>
     <h1>Contact book</h1>
     <c:if test="${pageContext.request.userPrincipal.name != null}">
-        <button><a href="/users/new" style="text-decoration: none; color: black; font-weight: bold">Create New
-            Contact</a></button>
+        <input type="button" value="Create New Contact"
+               onclick="window.location.href='/users/new'; return false"
+               class="mybutton"/>
     </c:if>
     <br/><br/>
     <table border="1" cellpadding="10">
@@ -26,13 +28,19 @@
         </thead>
 
         <c:forEach items="${listPerson}" var="person">
+
+            <c:url var="contactDetails" value="/users/contact">
+                <c:param name="personId" value="${person.id}"/>
+            </c:url>
+
+
             <tr>
-                <td><c:out value="${person.firstName}"/></td>
-                <td><c:out value="${person.lastName}"/></td>
+                <td>${person.firstName}</td>
+                <td>${person.lastName}</td>
                 <td align="center">
 
 
-                    <button type="submit"><a href="/users/showcontact/${person.id}"
+                    <button type="submit"><a href="${contactDetails}"
                                              style="text-decoration: none; font-weight: bold; color:green">+</a>
                     </button>
                 </td>
@@ -45,9 +53,9 @@
         <form id="logoutForm" method="POST" action="${contextPath}/logout">
             <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
         </form>
-        <button>
-            <a onclick="document.forms['logoutForm'].submit()">Logout</a>
-        </button>
+            <input type="button" value="Logout"
+            onclick="document.forms['logoutForm'].submit()"
+            class="mybutton"/>
     </c:if>
 
     <c:if test="${pageContext.request.userPrincipal.name == null}">

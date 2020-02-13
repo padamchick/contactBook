@@ -5,7 +5,7 @@
     <title>Contacts Book</title>
 </head>
 <body>
-<div align="center">
+<div>
     <h1>Contact book</h1>
     <br/>
     <table border="1" cellpadding="10">
@@ -23,21 +23,28 @@
         </tr>
         </thead>
 
+        <c:url var="updateLink" value="/users/edit">
+            <c:param name="personId" value="${person.id}"/>
+        </c:url>
+
+        <c:url var="deleteLink" value="/users/delete">
+            <c:param name="personId" value="${person.id}"/>
+        </c:url>
         <%--        <c:forEach items="${listPerson}" var="person">--%>
         <tr>
-            <td><c:out value="${person.firstName}"/></td>
-            <td><c:out value="${person.lastName}"/></td>
-            <td><c:out value="${person.email}"/></td>
-            <td><c:out value="${person.category}"/></td>
-            <td><c:out value="${person.phoneNumber}"/></td>
-            <td><c:out value="${person.birthDate}"/></td>
+            <td>${person.firstName}</td>
+            <td>${person.lastName}</td>
+            <td>${person.email}</td>
+            <td>${person.category}</td>
+            <td>${person.phoneNumber}</td>
+            <td>${person.birthDate}</td>
             <c:if test="${pageContext.request.userPrincipal.name != null}">
                 <td>
-                    <button type="submit"><a href="/users/edit/${person.id}"
+                    <button type="submit"><a href="${updateLink}"
                                              style="text-decoration: none; color:black">Edit</a>
                     </button>
 
-                    <button type="submit"><a href="/users/delete/${person.id}"
+                    <button type="submit"><a href="${deleteLink}"
                                              style="text-decoration: none; color:black"
                                              onclick="return confirm('Are you sure you want to delete this item?')">Delete</a>
                     </button>

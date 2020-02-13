@@ -26,6 +26,7 @@ public class Person {
 
     @NotNull(message = "This field is required.")
     @Size(min=1, message = "This field is required.")
+    @Pattern(regexp = ".+@.+\\..+", message = "Incorrect mail format. Should be sth@sth.sth")
     private String email;
 
     private String category;

@@ -35,7 +35,7 @@ public class AppController {
     public String showStartPage(Model model) {
         List<Person> listPerson = personService.listAll();
         model.addAttribute("listPerson", listPerson);
-        return "usersPage";
+        return "user-list";
     }
 
     @GetMapping("/login")
@@ -83,41 +83,34 @@ public class AppController {
     @GetMapping("/users/new")                           //otworz strone z formularzem nowego kontaktu
     public String showNewContactForm(Model model) {
         model.addAttribute("person", new Person());
-        return "newcontact";
+        return "contact-form";
     }
 
-    @PostMapping("users/save")  //zapisz nowy/edytowany kontakt
-    public String savePerson(@Valid @ModelAttribute("person") Person person, BindingResult bindingResult) {
+    @PostMapping("/users/save")  //zapisz nowy/edytowany kontakt
+    public String saveContact(@Valid @ModelAttribute("person") Person person, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
-            if(person.getId()==null) {      //jesli blad z formularza dla nowego kontaktu
-                return "newcontact";
-            } else {                        //jesli blad z formularza dla edytowanego kontaktu
-                return "redirect:/users/edit/"+person.getId();
-            }
-
+                return "contact-form";
         }
         personService.save(person);
         return "redirect:/users/";          //zapisz i powrot do strony glownej
     }
 
-    @GetMapping("/users/edit/{id}")
-    public ModelAndView showEditPersonForm(@PathVariable(name = "id") Long id) {
-        ModelAndView mav = new ModelAndView("edit_person");
+    @GetMapping("/users/edit")
+    public String showEditPersonForm(@RequestParam("personId") Long id, Model model) {
         Person person = personService.get(id);
-        mav.addObject("person", person);
-        return mav;
+        model.addAttribute("person", person);
+        return "contact-form";
     }
 
-    @GetMapping("/users/showcontact/{id}")
-    public ModelAndView showSelectedContact(@PathVariable(name = "id") Long id) {
-        ModelAndView mav = new ModelAndView("showContact");
+    @GetMapping("/users/contact")
+    public String showContact(@RequestParam("personId") Long id, Model model) {
         Person person = personService.get(id);
-        mav.addObject("person", person);
-        return mav;
+        model.addAttribute("person", person);
+        return "showContact";
     }
 
-    @GetMapping("/users/delete/{id}")
-    public String deletePerson(@PathVariable(name = "id") Long id) {
+    @GetMapping("/users/delete")
+    public String deletePerson(@RequestParam("personId") Long id) {
         personService.delete(id);
         return "redirect:/users/";
     }
