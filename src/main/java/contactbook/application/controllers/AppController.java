@@ -49,7 +49,7 @@ public class AppController {
         return "loginPage";
     }
 
-    @RequestMapping(value = "/logintopage", method = RequestMethod.POST)
+    @PostMapping("/logintopage")
     public String login(@Valid @ModelAttribute("credentials") Credentials credentials, BindingResult bindingResult) {
         loginValidator.validate(credentials, bindingResult);    //sprawdz, czy
         if(bindingResult.hasErrors()) {
@@ -58,7 +58,7 @@ public class AppController {
         return "redirect:/users";
     }
 
-    @RequestMapping(value = "/logout")          //wyloguj
+    @GetMapping(value = "/logout")          //wyloguj
     public String logout() {
         return "redirect:/login";
     }
@@ -69,7 +69,7 @@ public class AppController {
         return "registration-form";
     }
 
-    @RequestMapping(value = "/registration/save", method = RequestMethod.POST)
+    @PostMapping("/registration/save")
     public String saveCredentials(@Valid @ModelAttribute("credentials") Credentials credentials, BindingResult bindingResult) {
         registrationValidator.validate(credentials, bindingResult); //sprawdz dodatkowe warunki (duplikacja loginow/maili, bledne potwierdzenie hasla)
 
@@ -86,7 +86,7 @@ public class AppController {
         return "newcontact";
     }
 
-    @RequestMapping(value = "users/save", method = RequestMethod.POST)  //zapisz nowy/edytowany kontakt
+    @PostMapping("users/save")  //zapisz nowy/edytowany kontakt
     public String savePerson(@Valid @ModelAttribute("person") Person person, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             if(person.getId()==null) {      //jesli blad z formularza dla nowego kontaktu
@@ -100,7 +100,7 @@ public class AppController {
         return "redirect:/users/";          //zapisz i powrot do strony glownej
     }
 
-    @RequestMapping("/users/edit/{id}")
+    @GetMapping("/users/edit/{id}")
     public ModelAndView showEditPersonForm(@PathVariable(name = "id") Long id) {
         ModelAndView mav = new ModelAndView("edit_person");
         Person person = personService.get(id);
@@ -108,7 +108,7 @@ public class AppController {
         return mav;
     }
 
-    @RequestMapping("/users/showcontact/{id}")
+    @GetMapping("/users/showcontact/{id}")
     public ModelAndView showSelectedContact(@PathVariable(name = "id") Long id) {
         ModelAndView mav = new ModelAndView("showContact");
         Person person = personService.get(id);
@@ -116,7 +116,7 @@ public class AppController {
         return mav;
     }
 
-    @RequestMapping("/users/delete/{id}")
+    @GetMapping("/users/delete/{id}")
     public String deletePerson(@PathVariable(name = "id") Long id) {
         personService.delete(id);
         return "redirect:/users/";
