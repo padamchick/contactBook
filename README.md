@@ -4,10 +4,10 @@
 
 
 ## Screenshots
-![Unlogged view](https://i.imgur.com/YlTUpo4.jpg)
+![Unlogged view](https://i.imgur.com/LQXDiec.jpg)
 ![Login page](https://i.imgur.com/plIdQfW.jpg)
 ![Registration page](https://i.imgur.com/efuUgRs.jpg)
-![View after logging in](https://i.imgur.com/dBnc95K.jpg)
+![View after logging in](https://i.imgur.com/94L04Cc.jpg)
 ![New contact form](https://i.imgur.com/2rAJZVb.jpg)
 ![Single contact view](https://i.imgur.com/A06y8bB.jpg)
 
