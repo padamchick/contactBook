@@ -35,7 +35,7 @@ input, select {
 .mybutton {
     border: 1px solid #666;
     border-radius: 5px;
-    padding: 4px;
+    /*padding: 4px;*/
     font-size: 12px;
     font-weight: bold;
     width: auto;

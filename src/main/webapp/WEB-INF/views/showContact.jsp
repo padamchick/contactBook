@@ -5,7 +5,7 @@
     <title>Contacts Book</title>
 </head>
 <body>
-<div>
+<div align="center">
     <h1>Contact book</h1>
     <br/>
     <table border="1" cellpadding="10">

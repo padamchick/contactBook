@@ -10,14 +10,14 @@
           href="${pageContext.request.contextPath}/resources/css/styles.css">
 </head>
 <body>
-<div>
+<div align="center">
     <h1>Contact book</h1>
     <c:if test="${pageContext.request.userPrincipal.name != null}">
         <input type="button" value="Create New Contact"
                onclick="window.location.href='/users/new'; return false"
                class="mybutton"/>
     </c:if>
-    <br/><br/>
+    <br/>
     <table border="1" cellpadding="10">
         <thead>
         <tr>
