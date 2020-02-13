@@ -39,12 +39,13 @@ public class AppController {
     }
 
     @GetMapping("/login")
-    public String login(Model model, String error, String logout) {
+    public String login(Model model, String error, String logout, String registered) {
         if (error != null)
             model.addAttribute("error", "Your username and password is invalid.");      //informacje o errorach i logoutach wyswietlane w pliku login.jsp
-
         if (logout != null)
             model.addAttribute("message", "You have been logged out successfully.");
+        if (registered != null)
+            model.addAttribute("message", "Registration completed successfully.");
         model.addAttribute("credentials", new Credentials());
         return "loginPage";
     }
@@ -58,10 +59,10 @@ public class AppController {
         return "redirect:/users";
     }
 
-    @GetMapping(value = "/logout")          //wyloguj
-    public String logout() {
-        return "redirect:/login";
-    }
+//    @GetMapping(value = "/logout")          //wyloguj
+//    public String logout() {
+//        return "redirect:/login";
+//    }
 
     @GetMapping("/registration")
     public String showRegistrationForm(Model model) {
@@ -70,14 +71,15 @@ public class AppController {
     }
 
     @PostMapping("/registration/save")
-    public String saveCredentials(@Valid @ModelAttribute("credentials") Credentials credentials, BindingResult bindingResult) {
+    public String saveCredentials(@Valid @ModelAttribute("credentials") Credentials credentials, BindingResult bindingResult, Model model) {
         registrationValidator.validate(credentials, bindingResult); //sprawdz dodatkowe warunki (duplikacja loginow/maili, bledne potwierdzenie hasla)
 
         if(bindingResult.hasErrors()) {
             return "registration-form";         //powrot do formularza rejestracyjnego, wyswietlenie informacji o nieprawidlowosciach
         }
-        credentialsService.save(credentials);   //jesli wszystko ok, zapisz do bazy
-        return "redirect:/login";
+        //jesli wszystko ok, zapisz do bazy
+        credentialsService.save(credentials);
+        return "redirect:/login"+"?registered";
     }
 
     @GetMapping("/users/new")                           //otworz strone z formularzem nowego kontaktu

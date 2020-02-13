@@ -6,65 +6,54 @@
 <head>
     <title>Registration page</title>
 
-        <style>
-            .error {color:red}
-        </style>
+    <link type="text/css"
+          rel="stylesheet"
+          href="${pageContext.request.contextPath}/resources/css/styles.css">
 
 </head>
 <body>
 <div align="center">
     <h1>Registration form</h1>
 
+    <form:form method="POST" modelAttribute="credentials" action="/registration/save">
+        <table cellpadding="5">
 
-    <spring:url value="/registration/save" var="action"/>
-
-    <form:form method="POST" modelAttribute="credentials" action="${action}">
-        <table border="0" cellpadding="10">
-
-            <spring:bind path="username">
                 <tr>
                     <td> Username</td>
                     <td><form:input type="text" path="username" placeholder="Username"
                                     autofocus="true"/></td>
                     <td><form:errors path="username" cssClass="error"/></td>
                 </tr>
-            </spring:bind>
 
-            <spring:bind path="email">
                 <tr>
                     <td> Email</td>
                     <td><form:input type="text" path="email" placeholder="Email"
                                     autofocus="true"/></td>
                     <td><form:errors path="email" cssClass="error"/></td>
                 </tr>
-            </spring:bind>
 
-            <spring:bind path="password">
                 <tr>
                     <td> Password</td>
                     <td><form:input type="password" path="password" placeholder="Password"
-                                    autofocus="true"></form:input></td>
+                                    autofocus="true"/></td>
                     <td><form:errors path="password" cssClass="error"/></td>
                 </tr>
-            </spring:bind>
 
-            <spring:bind path="confPassword">
                 <tr>
                     <td> Confirm password</td>
                     <td><form:input type="password" path="confPassword" placeholder="Password confirmation"
-                                    autofocus="true"></form:input></td>
+                                    autofocus="true"/></td>
                     <td><form:errors path="confPassword" cssClass="error"/></td>
                 </tr>
-            </spring:bind>
 
             <tr>
                 <td colspan="2" align="center">
-                    <button type="submit" style="font-weight: bold; background-color: dodgerblue ;width: 305px; height: 40px">REGISTER</button>
+                    <button type="submit" class="mybutton">REGISTER</button>
                 </td>
             </tr>
             <tr>
                 <td colspan="2" align="center">
-                    <a href="/login" style="font-weight: bold; color: brown; text-decoration: none">Return</a>
+                    <a href="${pageContext.request.contextPath}/login" style="font-weight: bold; color: brown; text-decoration: none">Return</a>
                 </td>
             </tr>
         </table>

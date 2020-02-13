@@ -18,8 +18,9 @@
     <spring:url value="" var="userActionUrl"/>
     <span style="color: green">${message}</span>
     <span style="color: red">${error}</span>
+
     <form:form method="POST" modelAttribute="credentials" action="logintopage">
-        <table border="0" cellpadding="10">
+        <table cellpadding="5">
                 <tr>
                     <td> Username</td>
                     <td><form:input type="text" path="username" placeholder="Username"

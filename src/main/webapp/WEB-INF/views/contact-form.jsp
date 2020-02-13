@@ -16,7 +16,7 @@
     <form:form method="POST" modelAttribute="person" action="save">
         <form:hidden path="id"/>
 
-        <table>
+        <table cellpadding="5">
             <tbody>
             <tr>
                 <td><label>First name</label></td>
@@ -63,7 +63,8 @@
     </form:form>
     <div style="clear: both;">
         <p>
-            <a href="${pageContext.request.contextPath}/users">Back to List</a>
+            <a href="${pageContext.request.contextPath}/users"
+               style="color: darkred; font-weight: bold;  text-decoration: none">Back to List</a>
         </p>
     </div>
 

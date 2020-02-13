@@ -60,8 +60,10 @@
 
     <c:if test="${pageContext.request.userPrincipal.name == null}">
         <br/>
-        <button>
-            <a href="/login" style="text-decoration: none; color: black; font-weight: bold">Log in</a>
+        <button class="mybutton">
+            <a href="/login"
+               style="text-decoration: none; color: black; font-weight: bold"
+            >Log in</a>
         </button>
     </c:if>
 </div>
