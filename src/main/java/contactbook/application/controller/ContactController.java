@@ -28,6 +28,7 @@ public class ContactController {
     @GetMapping("/showFormForAdd")
     public String showFormForAdd(Model model) {
         model.addAttribute("contact", new Contact());
+        model.addAttribute("header", "Create New Contact");
         return "contacts/contact-form";
     }
 
@@ -41,6 +42,7 @@ public class ContactController {
     public String showFormForUpdate(@RequestParam("contactId") int id, Model model) {
         Contact contact = contactService.findById(id);
         model.addAttribute("contact", contact);
+        model.addAttribute("header", "Update Contact");
         return "contacts/contact-form";
     }
 

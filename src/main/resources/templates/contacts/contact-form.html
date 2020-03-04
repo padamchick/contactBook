@@ -17,7 +17,7 @@
         <h1>Contact Book</h1>
         <hr>
 
-        <p class="h4 mb-4">Save Contact</p>
+        <p class="h4 mb-4" th:text="${header}"/>
         <form action="#" th:action="@{/contacts/save}"
               th:object="${contact}" method="post">
 
