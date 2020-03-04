@@ -1,6 +1,6 @@
-package contactbook.application.repository;
+package contactbook.application.repository.contact;
 
-import contactbook.application.entity.Contact;
+import contactbook.application.entity.contact.Contact;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

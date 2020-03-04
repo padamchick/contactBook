@@ -1,6 +1,6 @@
 package contactbook.application.controller;
 
-import contactbook.application.entity.Contact;
+import contactbook.application.entity.contact.Contact;
 import contactbook.application.service.ContactService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

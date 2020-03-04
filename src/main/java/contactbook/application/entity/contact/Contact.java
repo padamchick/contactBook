@@ -1,4 +1,4 @@
-package contactbook.application.entity;
+package contactbook.application.entity.contact;
 
 import javax.persistence.*;
 

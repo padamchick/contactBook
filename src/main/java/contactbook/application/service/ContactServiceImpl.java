@@ -1,7 +1,7 @@
 package contactbook.application.service;
 
-import contactbook.application.entity.Contact;
-import contactbook.application.repository.ContactRepository;
+import contactbook.application.entity.contact.Contact;
+import contactbook.application.repository.contact.ContactRepository;
 import org.springframework.stereotype.Service;
 
 

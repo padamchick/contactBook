@@ -1,7 +1,7 @@
 package contactbook.application.service;
 
 
-import contactbook.application.entity.Contact;
+import contactbook.application.entity.contact.Contact;
 
 import java.util.List;
 

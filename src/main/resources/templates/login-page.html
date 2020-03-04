@@ -61,19 +61,27 @@
 
                                 </div>
 
+                                <div th:if="${registrationSucceeded}">
+
+                                    <div class="alert alert-success col-xs-offset-1 col-xs-10">
+                                        <p th:text="${registrationSucceeded}"/>
+                                    </div>
+
+                                </div>
+
                             </div>
                         </div>
                     </div>
 
                     <!-- User name -->
-                    <div style="margin-bottom: 25px" class="input-group">
+                    <div style="margin-bottom: 24px" class="input-group">
                         <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
 
                         <input type="text" name="username" placeholder="username" class="form-control">
                     </div>
 
                     <!-- Password -->
-                    <div style="margin-bottom: 25px" class="input-group">
+                    <div style="margin-bottom: 24px" class="input-group">
                         <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
 
                         <input type="password" name="password" placeholder="password" class="form-control" >
@@ -87,6 +95,14 @@
                     </div>
 
                 </form>
+                <div>
+                    <a th:href="@{/registration/showRegistrationForm}"
+                       class="btn btn-primary"
+                       role="button" aria-pressed="true">
+                        Register New User
+                    </a>
+                </div>
+
 
             </div>
 
