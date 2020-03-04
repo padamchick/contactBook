@@ -18,30 +18,35 @@
     <h1> Contact Book</h1>
     <hr>
 
+    <a th:href="@{/contacts/showFormForAdd}"
+       class="btn btn-primary btn-sm mb-3">
+        Add New Contact
+    </a>
+
     <table class="table table-bordered table-striped">
         <thead class="thead-dark">
-            <tr>
-<!--                <th>#</th>-->
-                <th>First name</th>
-                <th>Last name</th>
-                <th>Email</th>
-                <th>Birth date</th>
-                <th>Phone number</th>
-                <th>Category</th>
-            </tr>
+        <tr>
+            <!--                <th>#</th>-->
+            <th>First name</th>
+            <th>Last name</th>
+            <th>Email</th>
+            <th>Birth date</th>
+            <th>Phone number</th>
+            <th>Category</th>
+        </tr>
         </thead>
 
         <tbody>
-            <tr th:each="tempContact : ${contactList}">
+        <tr th:each="tempContact : ${contactList}">
 
-                <td th:text="${tempContact.firstName}"/>
-                <td th:text="${tempContact.lastName}"/>
-                <td th:text="${tempContact.email}"/>
-                <td th:text="${tempContact.birthDay}"/>
-                <td th:text="${tempContact.phoneNumber}"/>
-                <td th:text="${tempContact.category}"/>
+            <td th:text="${tempContact.firstName}"/>
+            <td th:text="${tempContact.lastName}"/>
+            <td th:text="${tempContact.email}"/>
+            <td th:text="${tempContact.birthDay}"/>
+            <td th:text="${tempContact.phoneNumber}"/>
+            <td th:text="${tempContact.category}"/>
 
-            </tr>
+        </tr>
         </tbody>
     </table>
 </div>
