@@ -52,7 +52,7 @@ public class ContactController {
 
     @GetMapping("/search")
     public String searchContacts(@RequestParam("searchName") String searchName, Model model) {
-        List<Contact> contactList = contactService.searchCustomers(searchName);
+        List<Contact> contactList = contactService.searchContacts(searchName);
         model.addAttribute("contactList", contactList);
         model.addAttribute("searchName", searchName);
         return "contacts/contact-list";

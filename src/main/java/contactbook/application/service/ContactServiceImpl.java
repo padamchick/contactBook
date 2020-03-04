@@ -48,8 +48,16 @@ public class ContactServiceImpl implements ContactService {
     }
 
     @Override
-    public List<Contact> searchCustomers(String searchName) {
-        return contactRepository.
-                findByFirstNameContainingIgnoreCaseOrLastNameContainingIgnoreCaseOrderByLastName(searchName, searchName);
+    public List<Contact> searchContacts(String searchName) {
+
+        List<Contact> results = null;
+
+        if(searchName!=null && searchName.trim().length()>0) {
+            results = contactRepository.
+                    findByFirstNameContainsOrLastNameContainsAllIgnoreCase(searchName, searchName);
+        } else {
+            results = findAll();
+        }
+        return results;
     }
 }

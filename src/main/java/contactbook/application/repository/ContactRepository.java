@@ -9,5 +9,5 @@ import java.util.List;
 @Repository
 public interface ContactRepository extends JpaRepository<Contact, Integer> {
     List<Contact> findAllByOrderByLastNameAsc();
-    List<Contact> findByFirstNameContainingIgnoreCaseOrLastNameContainingIgnoreCaseOrderByLastName(String searchName, String searchName2);
+    List<Contact> findByFirstNameContainsOrLastNameContainsAllIgnoreCase(String fName, String lName);
 }

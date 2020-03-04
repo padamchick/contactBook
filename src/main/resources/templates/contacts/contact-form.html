@@ -23,6 +23,7 @@
 
             <input type="hidden" th:field="*{id}">
 
+            <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
             <input type="text" th:field="*{firstName}"
                    class="form-control mb-4 col-4" placeholder="First name">
             <input type="text" th:field="*{lastName}"
@@ -42,7 +43,9 @@
             <button type="submit" class="btn btn-info col-2">Save</button>
 
         </form>
+        <hr>
 
+        <a th:href="@{/contacts/list}">Back to Employees List</a>
 
     </div>
 

@@ -15,5 +15,5 @@ public interface ContactService {
 
     public void deleteById(int id);
 
-    public List<Contact> searchCustomers(String searchName);
+    public List<Contact> searchContacts(String searchName);
 }
