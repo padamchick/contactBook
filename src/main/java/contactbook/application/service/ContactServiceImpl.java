@@ -19,7 +19,7 @@ public class ContactServiceImpl implements ContactService {
 
     @Override
     public List<Contact> findAll() {
-        return contactRepository.findAll();
+        return contactRepository.findAllByOrderByLastNameAsc();
     }
 
     @Override
@@ -45,5 +45,11 @@ public class ContactServiceImpl implements ContactService {
     @Override
     public void deleteById(int id) {
         contactRepository.deleteById(id);
+    }
+
+    @Override
+    public List<Contact> searchCustomers(String searchName) {
+        return contactRepository.
+                findByFirstNameContainingIgnoreCaseOrLastNameContainingIgnoreCaseOrderByLastName(searchName, searchName);
     }
 }

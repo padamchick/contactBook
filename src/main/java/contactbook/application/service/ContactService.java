@@ -14,4 +14,6 @@ public interface ContactService {
     public void save(Contact contact);
 
     public void deleteById(int id);
+
+    public List<Contact> searchCustomers(String searchName);
 }
