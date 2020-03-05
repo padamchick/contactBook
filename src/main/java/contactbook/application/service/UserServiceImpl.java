@@ -45,7 +45,7 @@ public class UserServiceImpl implements UserService{
         user.setEmail(newUser.getEmail());
 
 //        nadaj uzytkownikowi domyslnie role EMPLOYEE
-        user.setRoles(Arrays.asList(roleRepository.findByName("ROLE_EMPLOYEE")));
+        user.setRoles(Arrays.asList(roleRepository.findByName("ROLE_USER")));
 
 //        zapisz do bazy danych
         userRepository.save(user);
