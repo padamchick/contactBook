@@ -1,6 +1,7 @@
 package contactbook.application.controller;
 
 import contactbook.application.entity.user.User;
+import contactbook.application.service.SecurityService;
 import contactbook.application.service.UserService;
 import contactbook.application.user.NewUser;
 import org.springframework.beans.propertyeditors.StringTrimmerEditor;
@@ -17,9 +18,11 @@ import javax.validation.Valid;
 public class RegistrationController {
 
     private UserService userService;
+    private SecurityService securityService;
 
-    public RegistrationController(UserService userService) {
-        this.userService=userService;
+    public RegistrationController(UserService userService, SecurityService securityService) {
+        this.userService = userService;
+        this.securityService = securityService;
     }
 
     @InitBinder
@@ -52,8 +55,10 @@ public class RegistrationController {
         }
 
         userService.save(newUser);
-        model.addAttribute("registrationSucceeded", "Registration succeeded!");
-        return "login-page";
+        securityService.autoLogin(newUser.getUsername(), newUser.getPassword());
+//        model.addAttribute("registrationSucceeded", "Registration succeeded!");
+//        return "login-page";
+        return "redirect:/contacts/list";
 
     }
 }

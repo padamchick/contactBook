@@ -12,8 +12,8 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.Arrays;
-import java.util.Collection;
+import javax.transaction.Transactional;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
@@ -52,6 +52,35 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
+    public void save(User user) {
+        userRepository.save(user);
+    }
+
+    @Override
+    public List<User> findAllByOrderByLastNameAsc() {
+        return userRepository.findAllByOrderByLastNameAsc();
+    }
+
+    @Override
+    public User findById(int id) {
+        Optional<User> result = userRepository.findById(id);
+        User user = null;
+        if(result.isPresent()) {
+            user = result.get();
+        }
+        return user;
+    }
+
+    @Override
+    public void deleteById(int id) {
+        User user = findById(id);
+        user.removeAllRoles();
+        userRepository.save(user);
+        userRepository.deleteById(id);
+    }
+
+    @Override
+    @Transactional
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         User user = userRepository.findByUserName(username);
         if (user == null ) {

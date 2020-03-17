@@ -1,5 +1,8 @@
 <!DOCTYPE HTML>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <head>
     <!-- Required meta tags -->
@@ -16,6 +19,7 @@
 <div class="container">
 
     <h1> Contact Book</h1>
+    <h4> Witaj <span sec:authentication="name"/> </h4>
     <hr>
 
     <form th:action="@{/contacts/search}" class="form-inline">
@@ -25,7 +29,13 @@
         </a>
         <input class="form-control form-control-sm  mr-sm-2 mb-3" name="searchName" placeholder="Search" />
 
-        <button class="btn btn-success btn-sm mb-3" type="submit">Search</button>
+        <button class="btn btn-success btn-sm mb-3 mr-5" type="submit">Search</button>
+
+        <div sec:authorize="hasRole('ROLE_ADMIN')" class="form-group">
+            <a th:href="@{/admin/panel}" type="submit" class="form-group btn btn-secondary btn-sm mb-3">Admin panel</a>
+        </div>
+
+
     </form>
 
     <table class="table table-bordered table-striped">
@@ -73,7 +83,7 @@
     </table>
 
     <form action="#" th:action="@{/logout}" method="POST">
-        <input type="submit" value="Logout" class="btn btn-outline-primary mt-2"/>
+        <input type="submit" value="Logout" class="btn btn-outline-danger"/>
     </form>
 </div>
 

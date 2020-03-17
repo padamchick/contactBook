@@ -1,12 +1,16 @@
 package contactbook.application.entity.user;
 
 import lombok.Data;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
 
 @Entity
 @Table(name = "role")
-@Data
+@Setter @Getter
+@NoArgsConstructor
 public class Role {
 
     @Id
@@ -17,4 +21,18 @@ public class Role {
     @Column(name = "name")
     private String name;
 
+    @Override
+    public String toString() {
+        switch (name) {
+            case "ROLE_USER":
+                return "USER";
+            case "ROLE_MODERATOR":
+                return "MODERATOR";
+            case "ROLE_ADMIN":
+                return "ADMIN";
+            default:
+                return "NONE";
+        }
+
+    }
 }

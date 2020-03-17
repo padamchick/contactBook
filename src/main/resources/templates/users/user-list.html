@@ -1,0 +1,70 @@
+<!DOCTYPE HTML>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+          integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+
+    <title>Registered Users</title>
+</head>
+<body>
+
+<div class="container">
+    <h1>Registered Users</h1>
+    <h4>Witaj <span sec:authentication="name"/> w panelu admina</h4>
+    <hr>
+    <form th:action="@{/users/search}" class="form-inline">
+        <input class="form-control form-control-sm  mr-sm-2 mb-3" name="searchName" placeholder="Search account"/>
+        <button class="btn btn-success btn-sm mb-3 mr-5" type="submit">Search Account</button>
+
+        <!-- Back Button -->
+        <div class="form-group">
+            <a th:href="@{/contacts/list}" th:width="100px" class="btn btn-secondary btn-sm mb-3"> Back To Contacts </a>
+        </div>
+    </form>
+
+    <table class="table table-bordered table-striped">
+        <thead class="thead-dark">
+        <tr>
+            <th>#</th>
+            <th>First name</th>
+            <th>Last name</th>
+            <th>Username</th>
+            <th>Mail</th>
+            <th>Role</th>
+            <th>Action</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr th:each="user : ${users}">
+            <td th:text="${userStat.count}"/>
+            <td th:text="${user.firstName}"/>
+            <td th:text="${user.lastName}"/>
+            <td th:text="${user.userName}"/>
+            <td th:text="${user.email}"/>
+            <td th:text="${user.roles}"/>
+            <td>
+                <a th:href="@{/admin/panel/editUser(userId=${user.id})}" class="btn btn-info btn-sm">
+                    Update
+                </a>
+                <a th:href="@{/admin/panel/delete(userId=${user.id})}" class="btn btn-danger btn-sm">
+                    Delete User
+                </a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+</div>
+
+</body>
+</html>

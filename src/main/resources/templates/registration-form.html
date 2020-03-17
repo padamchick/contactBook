@@ -65,7 +65,8 @@
                     </div>
 
                     <!-- User name -->
-                    <div style="margin-bottom: 24px" class="input-group" th:classappend="${#fields.hasErrors('username')} ? 'has-error' : ''">
+                    <div style="margin-bottom: 24px" class="input-group"
+                         th:classappend="${#fields.hasErrors('username')} ? 'has-error' : ''">
                         <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
                         <input type="text" th:field="*{username}" placeholder="Username (*)" class="form-control"/>
                     </div>
@@ -76,7 +77,8 @@
 
 
                     <!-- Password -->
-                    <div style="margin-bottom: 24px" class="input-group"  th:classappend="${#fields.hasErrors('password')} ? 'has-error' : ''">
+                    <div style="margin-bottom: 24px" class="input-group"
+                         th:classappend="${#fields.hasErrors('password')} ? 'has-error' : ''">
                         <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
                         <input type="password" th:field="*{password}" placeholder="Password (*)" class="form-control"
                                th:errorclass="fieldError"/>
@@ -87,7 +89,8 @@
                     </div>
 
                     <!-- Confirm Password -->
-                    <div style="margin-bottom: 24px" class="input-group"  th:classappend="${#fields.hasErrors('confPassword')} ? 'has-error' : ''">
+                    <div style="margin-bottom: 24px" class="input-group"
+                         th:classappend="${#fields.hasErrors('confPassword')} ? 'has-error' : ''">
                         <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
                         <input type="password" th:field="*{confPassword}" placeholder="Confirm password (*)"
                                class="form-control" th:errorclass="fieldError"/>
@@ -99,7 +102,8 @@
 
 
                     <!-- First name -->
-                    <div style="margin-bottom: 24px" class="input-group"  th:classappend="${#fields.hasErrors('firstName')} ? 'has-error' : ''">
+                    <div style="margin-bottom: 24px" class="input-group"
+                         th:classappend="${#fields.hasErrors('firstName')} ? 'has-error' : ''">
                         <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
                         <input type="text" th:field="*{firstName}" placeholder="First name (*)" class="form-control"
                                th:errorclass="fieldError"/>
@@ -110,7 +114,8 @@
                     </div>
 
                     <!-- Last name -->
-                    <div style="margin-bottom: 24px" class="input-group"  th:classappend="${#fields.hasErrors('lastName')} ? 'has-error' : ''">
+                    <div style="margin-bottom: 24px" class="input-group"
+                         th:classappend="${#fields.hasErrors('lastName')} ? 'has-error' : ''">
                         <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
                         <input type="text" th:field="*{lastName}" placeholder="Last name (*)" class="form-control"
                                th:errorclass="fieldError"/>
@@ -121,7 +126,8 @@
                     </div>
 
                     <!-- Email -->
-                    <div style="margin-bottom: 24px" class="input-group"  th:classappend="${#fields.hasErrors('email')} ? 'has-error' : ''">
+                    <div style="margin-bottom: 24px" class="input-group"
+                         th:classappend="${#fields.hasErrors('email')} ? 'has-error' : ''">
                         <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
                         <input type="text" th:field="*{email}" placeholder="Email (*)" class="form-control"
                                th:errorclass="fieldError"/>
@@ -133,11 +139,19 @@
 
 
                     <!-- Register Button -->
-                    <div style="margin-top: 10px" class="form-group">
+                    <div style="float: left" class="form-group">
                         <div style="margin-top: 12px" class="col-sm-6 controls">
                             <button type="submit" class="btn btn-primary">Register</button>
                         </div>
                     </div>
+
+                    <!-- Back Button -->
+                    <div class="form-group">
+                        <div style="margin-top: 12px" class="col-sm-6 controls">
+                            <a th:href="@{/login}" class="btn btn-warning"> Back </a>
+                        </div>
+                    </div>
+
 
                 </form>
 
