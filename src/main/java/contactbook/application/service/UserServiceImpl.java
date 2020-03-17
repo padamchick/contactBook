@@ -1,5 +1,6 @@
 package contactbook.application.service;
 
+import contactbook.application.entity.contact.Contact;
 import contactbook.application.entity.user.Role;
 import contactbook.application.entity.user.User;
 import contactbook.application.repository.user.RoleRepository;
@@ -57,7 +58,7 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public List<User> findAllByOrderByLastNameAsc() {
+    public List<User> findAll() {
         return userRepository.findAllByOrderByLastNameAsc();
     }
 
@@ -77,6 +78,19 @@ public class UserServiceImpl implements UserService{
         user.removeAllRoles();
         userRepository.save(user);
         userRepository.deleteById(id);
+    }
+
+    @Override
+    public List<User> searchUsers(String searchName) {
+        List<User> results = null;
+
+        if(searchName!=null && searchName.trim().length()>0) {
+            results = userRepository.
+                    findByFirstNameContainsOrLastNameContainsAllIgnoreCase(searchName, searchName);
+        } else {
+            results = findAll();
+        }
+        return results;
     }
 
     @Override

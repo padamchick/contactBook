@@ -1,5 +1,6 @@
 package contactbook.application.repository.user;
 
+import contactbook.application.entity.contact.Contact;
 import contactbook.application.entity.user.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
@@ -10,4 +11,5 @@ import java.util.List;
 public interface UserRepository extends JpaRepository<User, Integer> {
     User findByUserName(String username);
     List<User> findAllByOrderByLastNameAsc();
+    List<User> findByFirstNameContainsOrLastNameContainsAllIgnoreCase(String fName, String lName);
 }

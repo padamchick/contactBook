@@ -1,7 +1,9 @@
 package contactbook.application.controller;
 
+import contactbook.application.entity.contact.Contact;
 import contactbook.application.entity.user.User;
 import contactbook.application.repository.user.RoleRepository;
+import contactbook.application.service.RoleService;
 import contactbook.application.service.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,16 +16,16 @@ import java.util.List;
 public class AdminController {
 
     private UserService userService;
-    private RoleRepository roleRepository;
+    private RoleService roleService;
 
-    public AdminController(UserService userService, RoleRepository roleRepository) {
+    public AdminController(UserService userService, RoleService roleService) {
         this.userService = userService;
-        this.roleRepository = roleRepository;
+        this.roleService = roleService;
     }
 
     @GetMapping("/panel")
     public String getAdminPanel(Model model) {
-        List<User> users = userService.findAllByOrderByLastNameAsc();
+        List<User> users = userService.findAll();
         model.addAttribute("users", users);
         return "users/user-list";
     }
@@ -32,7 +34,7 @@ public class AdminController {
     public String editUser(@RequestParam("userId") int userId, Model model) {
         User user = userService.findById(userId);
         model.addAttribute("user", user);
-        model.addAttribute("roles", roleRepository.findAll());
+        model.addAttribute("roles", roleService.findAll());
         return "users/user-form";
     }
 
@@ -46,6 +48,14 @@ public class AdminController {
     public String deleteContact(@RequestParam("userId") int id) {
         userService.deleteById(id);
         return "redirect:/admin/panel";
+    }
+
+    @GetMapping("/panel/search")
+    public String searchContacts(@RequestParam("searchName") String searchName, Model model) {
+        List<User> users = userService.searchUsers(searchName);
+        model.addAttribute("users", users);
+        model.addAttribute("searchName", searchName);
+        return "users/user-list";
     }
 
 }
