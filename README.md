@@ -4,13 +4,15 @@
 
 
 ## Screenshots
-![Login page](https://i.imgur.com/mBBo25y.jpg)
-![Registration page](https://i.imgur.com/qrPL74N.jpg)
-![View after registration](https://i.imgur.com/e1jHmO3.jpg)
-![View after logging in](https://i.imgur.com/hdIKPaJ.jpg)
-![Search the contact](https://i.imgur.com/fcskhqk.jpg)
-![New contact form](https://i.imgur.com/5AT6euf.jpg)
-![Single contact view](https://i.imgur.com/1YTZcKU.jpg)
+![Login page](https://i.imgur.com/5FplzGO.jpg)
+![Registration page](https://i.imgur.com/hb7ma3m.jpg)
+![View after logging in](https://i.imgur.com/AmSCazt.jpg)
+![Search the contact](https://i.imgur.com/i5b5up9.jpg)
+![New contact form](https://i.imgur.com/xcoMoRg.jpg)
+![Edit contact form](https://i.imgur.com/t5TCSeY.jpg)
+![Admin panel](https://i.imgur.com/MJNqv9X.jpg)
+![Assign role to user](https://i.imgur.com/7csCWyt.jpg)
+![Moderator view](https://i.imgur.com/0bBTS9j.jpg)
 
 ## Technologies
 * Java
@@ -34,11 +36,11 @@
 * Validation of registration form
 * Users with different roles and diffrent content displayed
 * Spring Security
+* Admin / moderator panel with extra permissions
+* Assigning roles to the specific user
 
 To-do list:
 * Browsing contacts by category
-* Admin / moderator panel with extra permissions
-* Adding JavaScript files to improve functionality of the application
 
 ## Status
 Project is: in progress
