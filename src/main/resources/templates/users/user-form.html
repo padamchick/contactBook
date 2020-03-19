@@ -53,15 +53,15 @@
 
 
         <div class="btn-group btn-group-toggle mb-2" data-toggle="buttons" th:each="role : ${roles}">
-            <label class="btn btn-outline-dark mb-2">
+            <label class="btn btn-outline-dark">
                 <input type="checkbox" th:field="*{roles}" th:value="${role.id}" th:text="${role}">
             </label>
         </div>
-        <br>
-
+        </br>
+        <hr>
         <!--        <button type="submit" class="btn btn-info col-2">Save</button><br>-->
 
-        <div style="float: left" class="form-group">
+        <div class="form-group" style="float: left">
             <div>
                 <button type="submit" class="btn btn-info mr-2 controls">Save</button>
             </div>

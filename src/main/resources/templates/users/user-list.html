@@ -19,7 +19,7 @@
 
 <div class="container">
     <h1>Registered Users</h1>
-    <h4>Witaj <span sec:authentication="name"/> w panelu admina</h4>
+    <h4>Welcome <span sec:authentication="name"/> in Admin Panel</h4>
     <hr>
     <form th:action="@{/admin/panel/search}" class="form-inline">
         <input class="form-control form-control-sm  mr-sm-2 mb-3" name="searchName" placeholder="Search account"/>
