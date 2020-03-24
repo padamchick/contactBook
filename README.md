@@ -20,6 +20,7 @@
 * Hibernate
 * JPA
 * Thymeleaf
+* Bootstrap 4
 * Lombok
 * MySQL
 * Maven
