@@ -7,6 +7,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 @RequestMapping("/contacts")
@@ -38,6 +39,7 @@ public class ContactController {
         return "redirect:/contacts/list";
     }
 
+
     @GetMapping("/showFormForUpdate")
     public String showFormForUpdate(@RequestParam("contactId") int id, Model model) {
         Contact contact = contactService.findById(id);
@@ -58,6 +60,12 @@ public class ContactController {
         model.addAttribute("contactList", contactList);
         model.addAttribute("searchName", searchName);
         return "contacts/contact-list";
+    }
+
+    @GetMapping("/getOne")
+    @ResponseBody
+    public Contact getOne(@RequestParam("contactId") Integer id) {
+        return contactService.findById(id);
     }
 
 }
