@@ -7,13 +7,13 @@ import java.util.List;
 
 public interface ContactService {
 
-    public List<Contact> findAll();
+    List<Contact> findAll();
 
-    public Contact findById(int id);
+    Contact findById(int id);
 
-    public void save(Contact contact);
+    void save(Contact contact);
 
-    public void deleteById(int id);
+    void deleteById(int id);
 
-    public List<Contact> searchContacts(String searchName);
+    List<Contact> searchContacts(String searchName);
 }
