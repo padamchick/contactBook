@@ -18,7 +18,7 @@
         <hr>
 
         <p class="h4 mb-4" th:text="${header}"/>
-        <form action="#" th:action="@{/contacts/save}"
+        <form id="form" action="#" th:action="@{/contacts/save}"
               th:object="${contact}" method="post">
 
             <input type="hidden" th:field="*{id}">
@@ -33,13 +33,17 @@
                    class="form-control mb-4 col-4" placeholder="Birth date">
             <input type="text" th:field="*{phoneNumber}"
                    class="form-control mb-4 col-4" placeholder="Phone number">
-            <select th:field="*{category}" class="form-control mb-4 col-4">
-                <option th:value="Business" th:text="Business"/>
+            <select onchange="check()" id="category" th:field="*{category}" class="form-control mb-4 col-4">
                 <option th:value="Private" th:text="Private"/>
+                <option th:value="Business" th:text="Business"/>
                 <option th:value="Different" th:text="Different"/>
             </select>
 
-            <button type="submit" class="btn btn-info col-2">Save</button>
+            <div id="todo"></div>
+
+            <button id="save" type="submit" class="btn btn-info col-2">Save</button>
+<!--            <input onclick="newSelectList()" id="new" class="btn btn-warning col-2" value="Create"/>-->
+
 
         </form>
         <hr>
@@ -47,6 +51,6 @@
         <a th:href="@{/contacts/list}">Back to Employees List</a>
 
     </div>
-
+    <script type="text/javascript" th:src="@{/js/script.js}"></script>
 </body>
 </html>
