@@ -7,7 +7,7 @@ $('document').ready(function() {
 
         var href= $(this).attr('href');
 
-        $.get(href, function(contact, status){
+        $.get(href, function(contact){
             $('#id').val(contact.id);
             $('#first-name').val(contact.firstName);
             $('#last-name').val(contact.lastName);
@@ -18,5 +18,13 @@ $('document').ready(function() {
         });
 
         $('#editModal').modal();
+    });
+
+    $('.table #deleteButton').on('click',function(event) {
+        event.preventDefault();
+        var href = $(this).attr('href');
+        $('#deleteModal #delRef').attr('href', href);
+        $('#deleteModal').modal();
+
     });
 });
